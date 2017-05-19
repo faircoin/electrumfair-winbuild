@@ -1,13 +1,26 @@
 # -*- mode: python -*-
 
 # We don't put these files in to actually include them in the script but to make the Analysis method scan them for imports
-a = Analysis(['electrum', 'gui/qt/main_window.py', 'gui/qt/lite_window.py', 'gui/text.py',
-              'lib/util.py', 'lib/wallet.py', 'lib/simple_config.py',
-              'lib/bitcoin.py'
+a = Analysis(['electrumfair',
+              'gui/qt/main_window.py',
+              'gui/text.py',
+              'lib/util.py',
+              'lib/wallet.py',
+              'lib/simple_config.py',
+              'lib/bitcoin.py',
+              'lib/dnssec.py',
+              'lib/commands.py',
+              'plugins/cosigner_pool/qt.py',
+              'plugins/email_requests/qt.py',
+              'plugins/trezor/client.py',
+              'plugins/trezor/qt.py',
+              'plugins/keepkey/qt.py',
+              'plugins/ledger/qt.py',
+              'packages/requests/utils.py'
               ],
-             hiddenimports=["lib","gui"],
              pathex=['lib', 'gui', 'plugins', 'packages'],
-             hookspath=None)
+             hiddenimports=['lib', 'gui'],
+             hookspath=[])
 
 ##### include mydir in distribution #######
 def extra_datas(mydir):
@@ -32,6 +45,9 @@ def extra_datas(mydir):
 # Theme data
 a.datas += extra_datas('data')
 
+# cacert.pem
+a.datas += [ ('requests/cacert.pem', 'packages/requests/cacert.pem', 'DATA') ]
+
 # Localization
 a.datas += extra_datas('locale')
 
@@ -39,19 +55,20 @@ a.datas += extra_datas('locale')
 a.datas += extra_datas('gui')
 a.datas += extra_datas('lib')
 a.datas += extra_datas('plugins')
+a.datas += extra_datas('packages')
 
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
           a.binaries,
           a.datas,
-          name=os.path.join('build\\pyi.win32\\electrum', 'electrum.exe'),
+          name=os.path.join('build\\pyi.win32\\electrumfair', 'electrumfair.exe'),
           debug=False,
           strip=None,
           upx=False,
-          icon='icons/electrum.ico',
+          icon='icons/electrumfair.ico',
           console=False)
-          # The console True makes an annoying black box pop up, but it does make Electrum output command line commands, with this turned off no output will be given but commands can still be used
+          # The console True makes an annoying black box pop up, but it does make electrumfair output command line commands, with this turned off no output will be given but commands can still be used
 
 coll = COLLECT(exe,
                a.binaries,
@@ -60,6 +77,7 @@ coll = COLLECT(exe,
                strip=None,
                upx=True,
                debug=False,
-               icon='icons/electrum.ico',
+               icon='icons/electrumfair.ico',
                console=False,
-               name=os.path.join('dist', 'electrum'))
+               name=os.path.join('dist', 'electrumfair'))
+

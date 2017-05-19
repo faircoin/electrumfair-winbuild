@@ -7,9 +7,9 @@ function buildBinary(){
     echo "Seems like the build failed. Exiting."
     exit
   fi
-  cp $TARGETFOLDER/dist/electrum.exe $(pwd)/releases/electrum-$VERSION.exe
-  cp $(pwd)/source/electrum-setup.exe $(pwd)/releases/electrum-$VERSION-setup.exe
-  echo "You can find your electrum $VERSION binaries in the releases folder."
+  cp $TARGETFOLDER/dist/electrumfair.exe $(pwd)/releases/electrumfair-$VERSION.exe
+  cp $(pwd)/source/electrumfair-setup.exe $(pwd)/releases/electrumfair-$VERSION-setup.exe
+  echo "You can find your electrumfair $VERSION binaries in the releases folder."
 
 }
 
@@ -23,7 +23,7 @@ function prepareFile(){
   if [ -e "$TARGETPATH" ]; then
     echo "Version tar already downloaded."
   else
-    wget https://download.electrum.org/$FILENAME -O $TARGETPATH
+    wget https://electrum.fair-coin.org/download/$FILENAME -O $TARGETPATH
   fi
 
   if [ -d "$TARGETFOLDER" ]; then
@@ -35,9 +35,9 @@ function prepareFile(){
 
 if [[ $# -gt 0 ]]; then
   VERSION=$1
-  FILENAME=Electrum-$VERSION.tar.gz
+  FILENAME=ElectrumFair-$VERSION.tar.gz
   TARGETPATH=$(pwd)/source/$FILENAME
-  TARGETFOLDER=$(pwd)/source/Electrum-$VERSION
+  TARGETFOLDER=$(pwd)/source/ElectrumFair-$VERSION
   echo "Building Electrum $VERSION from $FILENAME"
 else
   echo "Usage: ./build <version>."
@@ -70,3 +70,4 @@ prepareFile
 
 # Build files
 buildBinary
+
