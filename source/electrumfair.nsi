@@ -7,7 +7,7 @@
 ;Variables
 
   !define PRODUCT_NAME "ElectrumFair"
-  !define PRODUCT_VERSION "2.7.18"
+  !define PRODUCT_VERSION "2.8.4"
   !define PRODUCT_WEB_SITE "https://github.com/faircoin/electrumfair"
   !define PRODUCT_PUBLISHER "The FairCoin developers"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -53,13 +53,13 @@
   Caption "${PRODUCT_NAME}"
 
   ;Adds the Product Version on top of the Version Tab in the Properties of the file.
-  VIProductVersion 2.7.18.0
+  VIProductVersion 2.8.4.0
   
   ;VIAddVersionKey - Adds a field in the Version Tab of the File Properties. This can either be a field provided by the system or a user defined field.
   VIAddVersionKey ProductName "${PRODUCT_NAME} Installer"
   VIAddVersionKey Comments "The installer for ${PRODUCT_NAME}"
   VIAddVersionKey CompanyName "${PRODUCT_NAME}"
-  VIAddVersionKey LegalCopyright "2013-2017 ${PRODUCT_PUBLISHER}"
+  VIAddVersionKey LegalCopyright "2013-2018 ${PRODUCT_PUBLISHER}"
   VIAddVersionKey FileDescription "${PRODUCT_NAME} Installer"
   VIAddVersionKey FileVersion ${PRODUCT_VERSION}
   VIAddVersionKey ProductVersion ${PRODUCT_VERSION}
