@@ -20,7 +20,7 @@ RUN apt-get update -y && \
  apt-get autoclean -y
 
 # Versions
-ENV PYTHON_URL https://www.python.org/ftp/python/2.7.8/python-2.7.8.msi
+ENV PYTHON_URL https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
 ENV PYQT4_URL http://downloads.sourceforge.net/project/pyqt/PyQt4/PyQt-4.11.1/PyQt4-4.11.1-gpl-Py2.7-Qt4.8.6-x32.exe
 ENV PYWIN32_URL http://sourceforge.net/projects/pywin32/files/pywin32/Build%20219/pywin32-219.win32-py2.7.exe/download
 ENV PYINSTALLER_URL https://pypi.python.org/packages/source/P/PyInstaller/PyInstaller-2.1.zip
@@ -59,7 +59,8 @@ RUN ( export DISPLAY=:33 && touch /root/.Xauthority && \
  rm -rf /tmp/.wine-* && wine PyQt.exe /S && sleep 3 && \
  rm -rf /tmp/.wine-* && wine pywin32.exe && sleep 3 && \
  rm -rf /tmp/.wine-* && wine setuptools.exe && sleep 3 && \
- rm -rf /tmp/.wine-* && wine nsis.exe /S && sleep 3 \
+ rm -rf /tmp/.wine-* && wine nsis.exe /S && sleep 3 && \
+ rm -rf /tmp/.wine-* && $PIP install pycryptodomex win_inet_pton && sleep 3 \
 )
 
 RUN cp $WINEPREFIX/drive_c/windows/system32/msvcp90.dll $WINEPREFIX/drive_c/Python27/ && \

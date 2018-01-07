@@ -23,7 +23,7 @@ function prepareFile(){
   if [ -e "$TARGETPATH" ]; then
     echo "Version tar already downloaded."
   else
-    wget https://electrum.fair-coin.org/download/$FILENAME -O $TARGETPATH
+    wget https://download.fair-coin.org/electrum/$FILENAME -O $TARGETPATH
   fi
 
   if [ -d "$TARGETFOLDER" ]; then
